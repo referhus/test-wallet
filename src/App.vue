@@ -1,28 +1,30 @@
 <template>
   <main class="container container_grid">
-    <h1 class="title"> Кошелек </h1>
+    <h1 class="title">Кошелек</h1>
     <filters></filters>
     <div class="content _fill">
       <balance></balance>
       <transactions v-if="results.length"></transactions>
-      <div class="text_empty" v-else>У вас ещё не было операций с кошельком.</div>
+      <div class="text_empty" v-else>
+        У вас ещё не было операций с кошельком.
+      </div>
     </div>
   </main>
 </template>
 
 <script>
-import { mapMutations, mapState  } from 'vuex';
+import { mapMutations, mapState } from "vuex";
 
-import filters from './components/filters.vue'
-import balance from './components/balance.vue'
-import transactions from './components/transactions.vue'
+import filters from "./components/filters.vue";
+import balance from "./components/balance.vue";
+import transactions from "./components/transactions.vue";
 export default {
-  name: 'App',
+  name: "App",
   data: () => {
     return {
       isMobile: false,
-      isTablet: false
-    }
+      isTablet: false,
+    };
   },
   components: {
     filters,
@@ -30,10 +32,10 @@ export default {
     transactions,
   },
   computed: {
-    ...mapState(['results', 'transactions'])
+    ...mapState(["results", "transactions"]),
   },
   methods: {
-    ...mapMutations(['setResults']),
+    ...mapMutations(["setResults"]),
     setIsMobile() {
       this.isMobile = window.innerWidth < 768;
     },
@@ -42,18 +44,16 @@ export default {
     },
   },
   created() {
-    this.setResults()
-    this.setIsMobile()
-    this.setIsTablet()
-    window.addEventListener('resize', () => this.setIsMobile());
-    window.addEventListener('resize', () => this.setIsTablet());
-  }
-
-}
+    this.setResults();
+    this.setIsMobile();
+    this.setIsTablet();
+    window.addEventListener("resize", () => this.setIsMobile());
+    window.addEventListener("resize", () => this.setIsTablet());
+  },
+};
 </script>
 
 <style lang="scss">
-
 * {
   margin: 0;
   padding: 0;
@@ -65,7 +65,7 @@ export default {
 }
 
 body {
-  background:#120C17;
+  background: #120c17;
   color: #fff;
 }
 
@@ -108,7 +108,7 @@ body {
 .content {
   margin-top: 30px;
   padding-top: 40px;
-  border-top: 1px solid rgba(125,119,129, .2);
+  border-top: 1px solid rgba(125, 119, 129, 0.2);
   display: grid;
   grid-template-columns: 393px 1fr;
   gap: 60px;
@@ -125,9 +125,9 @@ body {
     gap: 20px;
   }
 }
-  ._fill {
-    grid-column: 1/3;
-  }
+._fill {
+  grid-column: 1/3;
+}
 
 .title {
   font-size: 30px;
@@ -150,7 +150,7 @@ body {
 
   @media screen and (max-width: 1280px) {
     font-size: 14px;
-    line-height: normal; 
+    line-height: normal;
   }
 }
 
@@ -160,9 +160,8 @@ body {
 
   @media screen and (max-width: 1024px) {
     font-size: 12px;
-    line-height: normal; 
+    line-height: normal;
   }
-
 }
 
 .text_bold {
@@ -171,7 +170,7 @@ body {
 
 .text_empty {
   font-size: 18px;
-  font-weight: 700; 
+  font-weight: 700;
 }
 
 .btn {
@@ -192,25 +191,30 @@ body {
 }
 
 .btn_bg {
-  background: linear-gradient(to right top, rgba(255, 174, 71, 1), rgba(250, 57, 57, 1));
+  background: linear-gradient(
+    to right top,
+    rgba(255, 174, 71, 1),
+    rgba(250, 57, 57, 1)
+  );
 }
 
 .btn_border {
-  border: 1px solid rgba(250, 57, 57, 0.80);
-  backdrop-filter: blur(5px); 
+  border: 1px solid rgba(250, 57, 57, 0.8);
+  backdrop-filter: blur(5px);
 }
 
 .__tenge {
-    white-space: nowrap;
-    &:after {
-        display: inline-block;
-        margin-left: 0.18em;
-        content: '\20B8';
-        font-family: 'Montserrat', sans-serif;
-    }
+  white-space: nowrap;
+  &:after {
+    display: inline-block;
+    margin-left: 0.18em;
+    content: "\20B8";
+    font-family: "Montserrat", sans-serif;
+  }
 }
 
-table, tr {
+table,
+tr {
   width: 100%;
 }
 
@@ -218,12 +222,11 @@ table, tr {
   white-space: nowrap;
   font-size: 20px;
   font-weight: 500;
-  line-height: 100%;     
-  color: #7D7781;
-  transition: .3s;
+  line-height: 100%;
+  color: #7d7781;
+  transition: 0.3s;
   &._open {
     transform: rotate(-180deg);
   }
 }
-    
 </style>

@@ -1,10 +1,6 @@
 <template>
-  <div 
-    :class="[
-        'filters',
-        {_fill: $root.isTablet || $root.isMobile}
-      ]">
-    <select-cmp 
+  <div :class="['filters', { _fill: $root.isTablet || $root.isMobile }]">
+    <select-cmp
       v-show="visible"
       class="filters__dropdown"
       ref="select"
@@ -13,19 +9,17 @@
       :id="item.id"
       :active="item.active"
       :items="item.items"
-      :label="item.label">
-    </select-cmp>
-    <div 
-      v-if="$root.isMobile"
-      class="filters__button"
-      @click="toggle"
+      :label="item.label"
     >
+    </select-cmp>
+    <div v-if="$root.isMobile" class="filters__button" @click="toggle">
       <span class="text_small">{{ textBtn }}</span>
-      <span 
+      <span
         :class="[
           'filters__button-arrow material-icons __arrow',
-          {_open: visible}
-        ]">
+          { _open: visible },
+        ]"
+      >
         expand_more
       </span>
     </div>
@@ -33,37 +27,36 @@
 </template>
 
 <script>
-import selectCmp from '@/components/select.vue'
-import { toggle } from '@/utils/mixins/toggle';
+import selectCmp from "@/components/select.vue";
+import { toggle } from "@/utils/mixins/toggle";
 
-import { mapState, mapMutations } from 'vuex'
+import { mapState, mapMutations } from "vuex";
 
 export default {
-  name: 'filters-cmp',
+  name: "filters-cmp",
   data: () => {
-    return {
-    }
+    return {};
   },
   mixins: [toggle],
   computed: {
-    ...mapState(['transactions', 'filters']),
+    ...mapState(["transactions", "filters"]),
     textBtn() {
-      return this.visible ? 'Свернуть фильтры' : 'Развернуть фильтры'
-    }
+      return this.visible ? "Свернуть фильтры" : "Развернуть фильтры";
+    },
   },
   components: {
     selectCmp,
   },
   methods: {
-    ...mapMutations(['setResult']),
+    ...mapMutations(["setResult"]),
   },
   created() {
-    this.show()
-    window.addEventListener('resize', () => {
-      !this.$root.isMobile && this.show()
+    this.show();
+    window.addEventListener("resize", () => {
+      !this.$root.isMobile && this.show();
     });
-  }
-}
+  },
+};
 </script>
 
 <!-- Add "scoped" attribute to limit CSS to this component only -->
@@ -98,17 +91,16 @@ export default {
       display: flex;
       justify-content: space-between;
       align-items: center;
-      color: #FF9839;
+      color: #ff9839;
       width: 155px;
       position: absolute;
       top: -28px;
       right: 0;
 
       &-arrow {
-        color: #FF9839;
+        color: #ff9839;
       }
     }
   }
 }
-
 </style>

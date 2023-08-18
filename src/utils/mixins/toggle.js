@@ -1,18 +1,18 @@
 export const toggle = {
-    data() {
-        return {
-            visible: false,
-        };
+  data() {
+    return {
+      visible: false,
+    };
+  },
+  methods: {
+    toggle() {
+      this.visible = !this.visible;
     },
-    methods: {
-        toggle() {
-            this.visible = !this.visible;
-        },
-        hide() {
-            this.visible = false;
-        },
-        show() {
-            this.visible = true;
-        },
+    hide() {
+      this.visible = false;
     },
+    show() {
+      this.visible = true;
+    },
+  },
 };
